@@ -1,10 +1,6 @@
-# Hello World!
+## A personal webpage
 
 ***
-
-I am trying out Markdown on Git to see if I can build a webpage.
-
-* This should be bullet pointed.
 
 I will host blog posts, projects and life updates on this site.
 
