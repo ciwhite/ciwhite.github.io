@@ -22,7 +22,18 @@ a:hover {
     text-decoration: underline;
 }
 button {
-    margin-left: 20px
+    margin-left: 100px;
+    font-family:'Helvetica';
+    border: 1px solid #999;
+    background-color:#000;
+    padding: 30px;
+    margin: 2px 1px;
+    transition-duration: 0s
+    cursor: pointer;
+    border-radius: 8px;
+}
+button:hover {
+    background-color: #e7e7e7;
 }
 h1 {
     font-size: 3em;
