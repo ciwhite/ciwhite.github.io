@@ -6,11 +6,11 @@ permalink: /cv/
 
 # {{ page.title }}
 
-Cian White
-The Owl, 
-Grand Canal Dock, Dublin 2, Dublin, Ireland 
-Phone: +353 87 315 6535 
-ciwhite@tcd.ie
+Cian White  
+The Owl,  
+Grand Canal Dock, Dublin 2, Dublin, Ireland  
+Phone: +353 87 315 6535  
+ciwhite@tcd.ie 
 
 ## RESEARCH INTERESTS
 
@@ -127,6 +127,10 @@ Previous:
 ‘The life of Bees’. Part of PROBE, Trinity opens its doors to the public on European Researchers Night. I hosted a workshop introducing bees to kids. Science Gallery event. 28th October 2018
 
 ‘Fire and Plants’. Part of PROBE, Trinity opens its doors to the public on European Researchers Night. I assisted colleagues at stand introducing fire ecology. Science Gallery event. 28th October 2018
+
+
+[Home](https://ciwhite.github.io/)
+
 
 
 
