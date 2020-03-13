@@ -10,3 +10,4 @@ github_username: ciwhite
 markdown: kramdown
 theme: minima
 permalink: /blog/:year/:month/:day/:title
+permalink: /cv/
