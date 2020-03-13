@@ -9,3 +9,4 @@ github_username: ciwhite
 # Build Settings
 markdown: kramdown
 theme: minima
+permalink: /blog/:year/:month/:day/:title
