@@ -2,7 +2,20 @@
 title: About
 ---
 
-Just a 25 year old trying to figure out how to create an online presence
+A Phd Student at the Botany Department of Trinity College Dublin, supervised by [Professor Jane Stout](https://www.tcd.ie/Botany/people/stoutj/) and [Dr. Marcus Collier](https://www.tcd.ie/Botany/people/colliema/).
+
+Ongoing Projects
+* A framework for identifying Nature-based Solutions.
+* The impact of an urban and agricultural gradient on the structure of Plant-Flower Visitor interaction networks.
+* Predicting plant network roles from floral traits.
+* Managing wildflower meadows for multiple ecosystem service delivery.
+* Investigating the stability of ecosystem service provision using network metrics
+
+Side Projects
+* Áras an Uachtaráin Bird Survey
+* Ground Bee Nesting Substrates
+* Avipelago
+
 
 ![alt text](profile.jpg)
 
