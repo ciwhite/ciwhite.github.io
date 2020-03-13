@@ -3,7 +3,8 @@ layout: default
 title: Curriculum Vitae
 permalink: /cv/
 ---
-	{{ page.title }}
+
+# {{ page.title }}
 
 Cian White
 The Owl, 
@@ -11,11 +12,11 @@ Grand Canal Dock, Dublin 2, Dublin, Ireland
 Phone: +353 87 315 6535 
 ciwhite@tcd.ie
 
-RESEARCH INTERESTS
+## RESEARCH INTERESTS
 
 My research interests lie at the intersection of people and nature. I am interested in how an understanding of ecological systems can inform adaptive management for ecosystem service provision to create Nature-based Solutions. Given that ecosystems and society are complex systems I adapt methods from complexity science, particularly graph theory, to study the magnitude and stability of ecosystem service provision. I recently initiated a project using dynamic simulations to relate the network position of a service to its stability through time and am interested in exploring a similar topic with empirical datasets.
 
-EDUCATION
+### EDUCATION
 
 Ph.D., Ecology, Trinity College Dublin, Current
 Concentrations: Nature-based Solutions, Ecosystem Services, Plant Animal Interactions, Network Ecology.
@@ -28,7 +29,7 @@ Dissertation Advisor: Yvonne M. Buckley, Ph.D.
 First Class Honours, 73% overall grade. 4th Position in Class.
 
 
-PUBLICATIONS
+### PUBLICATIONS
 
 No papers published yet but below is a selection of manuscripts in various stages of progress.
 
@@ -49,7 +50,7 @@ Ross, S. R. J., Arnoldi, J. -F., Jackson, A., White, C., Stout, J., Donohue, I. 
 Csergő, A. M., Healy, K., Baudraz, M. E. A., Kelly, D., Kelly, R., O’Connell, D., Ó Marcaigh, F., Smith, A. L., Villellas, J., White, C., Wilson, J., Yang, Q., Buckley, Y. M.  “A meta-analysis of mainland and island populations suggests a general isolation syndrome affecting traits, demography and genetic diversity.” Final Draft.
 
 
- PRESENTATIONS
+ ### PRESENTATIONS
 
 White, Cian (2018). “What is a Nature-based Solution” presented at the Environ Conference at Cork Institute of Technology
 
@@ -64,7 +65,7 @@ White, Cian (2019). “Redefining Nature-based Solutions” presented at British
 White, Cian (2020). “Does Floral Abundance or Diversity of Wildflower Meadows Correlate with Self-Reported Wellbeing” presented at Irish Pollinator Research Network, Maynooth, Ireland.
 
 
-TEACHING EXPERIENCE
+### TEACHING EXPERIENCE
 
 Teaching Assistant and Lecturer, Trinity College Dublin, 2017- Current
 Teaching Assistant Courses: Introduction to Statistics, Plant Animal Interactions, Fundamentals of Ecology.
@@ -78,35 +79,35 @@ Co-supervisor of undergraduate student in 18/19 academic year. Student was award
 Co-supervising three undergraduate projects in 19/20 academic year.
 
 
-GRANTS AND FELLOWSHIPS
+### GRANTS AND FELLOWSHIPS
 
 Trinity Award (Trinity College Dublin Research Grant, 2017)
 
 
-WORKSHOPS
+### WORKSHOPS
 
 Winter Workshop on Complex Systems 2020 in Lausanne, Switzerland.
 
 
-AWARDS AND HONORS
+### AWARDS AND HONORS
 
 Best Overall Oral Presentation, Environ 2018
 
 Best 5 Minute Talk, SCAPE 2018
 
 
-PROFESSIONAL MEMBERSHIPS
+### PROFESSIONAL MEMBERSHIPS
 
 British Ecological Society
 Irish Ecological Association
 
 
-RELEVANT SKILLS
+### RELEVANT SKILLS
 
 Good knowledge of R statistical program and Arc GIS mapping software.
 
 
-OUTREACH
+### OUTREACH
 
 Upcoming: 
 ‘Biodiversity: what is it, why it’s interesting and how to design with it’. Invited talk for Architecture Students at Technical University of Dublin. 12th February 2020
