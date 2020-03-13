@@ -26,8 +26,8 @@ button {
     font-family:'Helvetica';
     border: 1px solid #999;
     background-color:#FFFFF;
-    padding: 3px;
-    margin: 2px 1px;
+    padding: px;
+    margin: 4px 2px;
     transition-duration: 0s;
     cursor: pointer;
     border-radius: 8px;
