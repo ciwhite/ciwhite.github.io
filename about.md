@@ -5,7 +5,7 @@ title: About
 A Phd Student at the Botany Department of Trinity College Dublin, supervised by [Professor Jane Stout](https://www.tcd.ie/Botany/people/stoutj/) and [Dr. Marcus Collier](https://www.tcd.ie/Botany/people/colliema/).
 
 Ongoing Projects
-* A framework for identifying [Nature-based Solutions](_projects/Nature-based-solutions.html).
+* A framework for identifying [Nature-based Solutions](_projects/Nature-based-solutions.md).
 * The impact of an urban and agricultural gradient on the structure of Plant-Flower Visitor interaction networks.
 * Predicting plant network roles from floral traits.
 * Managing wildflower meadows for multiple ecosystem service delivery.
