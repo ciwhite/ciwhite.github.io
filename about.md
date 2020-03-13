@@ -14,7 +14,8 @@ Ongoing Projects
 Side Projects
 * Áras an Uachtaráin Bird Survey
 * Ground Bee Nesting Substrates
-* Avipelago
+* [Avipelago](https://sysrev.com/u/1225/p/23706)
+* [Entogem](https://sysrev.com/u/371/p/16612)
 
 
 ![alt text](profile.jpg)
