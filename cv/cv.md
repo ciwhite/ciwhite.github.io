@@ -3,9 +3,7 @@ layout: default
 title: Curriculum Vitae
 permalink: /cv/
 ---
-	<h1>{{ page.title }}</h1>
-
-Current CV
+	{{ page.title }}
 
 Cian White
 The Owl, 
