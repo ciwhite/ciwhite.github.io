@@ -19,17 +19,24 @@
 <nav class="navbar navbar-md navbar-light bglight stick-top">
 <div class="container-fluid">
 	<ul>
-		<a href="/" title="Home">Home</a>	
+		<a class="navbar-brand" href="/" title="Cian White">Cian White</a>	
 		<a href="/about" title="About">About</a>
 		<a href="/cv" title="CV">CV</a>
 		<a href="/blog" title="Blog">Blog</a>
 	</ul>
+	<!--Brand and toggle get grouped for better mobile display-->
+	<div class="navbar-header page-scroll">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" 
+		data-target="#navbarResponsive">
+		<span class="sr-only">Toggle Navigation</span>
+		<span class="navbar-toggle-icon"></span>
+		<span class="navbar-toggle-icon"></span>
+		<span class="navbar-toggle-icon"></span>
+		</button>
+	<!--Collecting the nav links,forms and other content for toggling-->
 	<ul class="navbar-nav ml-auto">
-	<button class="navbar-toggler" type="button" data-toggle="collapse" 
-	data-target="#navbarResponsive">
-	<span class="navbar-toggle-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarResponsive">
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="nav navbar-nav navbar-right">
 		<li  class="nav-item active">
 			<a class="nav-link" href="/projects" title="Projects">Projects</a>
 		</li>
@@ -41,14 +48,14 @@
 </div>
 </nav>
 
+<!--- Image Slider -->
 
 
 			<div class="container">
 			
 				{{ content }}
 
-dummy text banter
-<!--- Image Slider -->
+
 
 
 <!--- Jumbotron -->
