@@ -11,25 +11,39 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 		</head>
 		<body>
-			<nav>
-	    		<ul>
-	        		<li><a href="/">Home</a></li>
-		        	<li><a href="/about">About</a></li>
-	        		<li><a href="/cv/">CV</a></li>
-	        		<li><a href="/blog">Blog</a></li>
-	    		</ul>
-			</nav>
+			<div class="header">
+				<ul class="nav nav-pills pull-left">
+					<li class="active">
+						<a href="/" title="Home">Home</a>
+						<a href="/about" title="About">About</a>
+						<a href="/cv" title="CV">CV</a>
+						<a href="/blog" title="Blog">Blog</a>
+					</li>
+				<!-- <li class="passive"><a href="/projects" title="Projects">Projects</a>
+				</li> -->
+				</ul>
+			</div>
+
 			<div class="container">
 			
 			{{ content }}
 			
 			</div><!-- /.container -->
-			<footer>
-	    		<ul>
-	        		<li><a href="mailto:ciwhite@tcd.ie">email</a></li>
-	        		<li><a href="https://github.com/ciwhite">github</a></li>
-              <li><a href="https://twitter.com/Cian_De_Faoiche">twitter</a></li>
+			
+			<!--The footer for website-->
+			<div class="footer">
+				<ul class="nav nav-pills centre">
+				<li class="active">
+					<a href="mailto:ciwhite@tcd.ie">
+						<img src="gmail.png" alt="Email Icon" style="width:25px;height:25px;border:0;">
+					</a>
+					<a href="https://github.com/ciwhite">
+						<img src="github.png" alt="Github Icon" style="width:25px;height:25px;border:0;">
+					</a>
+					<a href="https://twitter.com/Cian_De_Faoiche">
+						<img src="twitter.png" alt="Twitter Icon" style="width:25px;height:25px;border:0;">
+					</a>
+				</li>
 				</ul>
-			</footer>
 		</body>
 	</html>
