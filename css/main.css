@@ -63,9 +63,14 @@ img {
     border: 0;
 }
 a {
+    color: #428bca;
     text-decoration: none;
-    color: rgb(0, 0, 0);
-}
+  }
+  a:hover,
+  a:focus {
+    color: #2a6496;
+    text-decoration: underline;
+  }
 footer {
     border-top: 1px solid rgb(124, 213, 255);
     font-size: .8em;
