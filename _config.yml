@@ -12,8 +12,5 @@ permalink: /blog/:year/:month/:day/:title
 collections:
   notebooks:
     outout: true
-     permalink: /:path/:name
   projects:
-    outout: true
-     permalink: /:collection/:name
-  
+    outout: true  
