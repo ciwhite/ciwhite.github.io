@@ -1,29 +1,52 @@
 <!DOCTYPE html>
-	<html lang="en-UK">
+	<html lang="en">
 		<head>
-			<title>{{ page.title }}</title>
-			<!-- link to cv stylesheet -->
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<title>Cian White CV</title>
+			<!-- link to main stylesheet -->
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 			<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-			<link href="/css/cv.css" rel="stylesheet">
+			<link href="/css/main.css" rel="stylesheet">
+
 		</head>
 		<body>
-			<div class="header">
-			<ul class="nav nav-pills pull-left">
-			<li class="active">
-			<a href="/" title="Home">Home</a>
-			<a href="/about" title="About">About</a>
-			<a href="/cv" title="CV">CV</a>
-			<a href="/blog" title="Blog">Blog</a>
-			</li>
-			<!-- <li class="passive"><a href="/projects" title="Projects">Projects</a>
-			</li> -->
-			</ul>
-			</div>
 
+<!-- Navigation -->
+<nav class="topnav">
+<div class="container-fluid">
+	<ul>
+		<a class="navbar-brand" href="/" title="Cian White">Cian White</a>	
+		<a href="/about" title="About">About</a>
+		<a href="/cv" title="CV">CV</a>
+		<a href="/blog" title="Blog">Blog</a>
+	</ul>
+	<!--Brand and toggle get grouped for better mobile display-->
+	<div class="navbar-header page-scroll">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" 
+		data-target="#navbarResponsive">
+		<span class="sr-only">Toggle Navigation</span>
+		<span class="navbar-toggle-icon"></span>
+		<span class="navbar-toggle-icon"></span>
+		<span class="navbar-toggle-icon"></span>
+		</button>
+	<!--Collecting the nav links,forms and other content for toggling-->
+	<ul class="navbar-nav ml-auto">
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="nav navbar-nav navbar-right">
+		<li  class="nav-item active">
+			<a class="nav-link" href="/projects" title="Projects">Projects</a>
+		</li>
+		<li  class="nav-item active">
+			<a class="nav-link" href="/RNotebooks" title="RNotebooks">RNotebooks</a>
+		</li>
+	</ul>
+	</div>
+</div>
+</nav>
 			<div class="container">
 				<a href="/files/Academic-CV.pdf" class="btn btn-default pull-right" title="Download CV as PDF">Download CV</a>	
 			
@@ -35,19 +58,19 @@
 
 
 			<!--The footer for website-->
-			<div class="footer">
-				<ul class="nav nav-pills centre">
-				<li class="active">
+			<footer>
+				<ul class="footer" style="text-align: center;">   
 					<a href="mailto:ciwhite@tcd.ie">
-						<img src="gmail.png" alt="Email Icon" style="width:25px;height:25px;border:0;">
+						<img src="/images/gmail.png" alt="Email Icon" style="width:25px;height:25px;border:0">
 					</a>
 					<a href="https://github.com/ciwhite">
-						<img src="github.png" alt="Github Icon" style="width:25px;height:25px;border:0;">
+						<img src="/images/github.png" alt="Github Icon" style="width:25px;height:25px;border:0;">
 					</a>
 					<a href="https://twitter.com/Cian_De_Faoiche">
-						<img src="twitter.png" alt="Twitter Icon" style="width:25px;height:25px;border:0;">
+						<img src="/images/twitter.png" alt="Twitter Icon" style="width:25px;height:25px;border:0;">
 					</a>
-				</li>
+				
 				</ul>
+			</footer>
 		</body>
 	</html>

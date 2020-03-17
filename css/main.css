@@ -111,16 +111,25 @@ nav ul, footer ul {
     list-style: none;
     font-weight: bold;
 }
-nav ul li, footer ul li {
+nav ul li{
     display: inline;
     margin-right: 20px;
-}
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+      }
+
+footer ul li {
+    display: inline;
+    margin-right: 20px;
+    }
+
 a {
     text-decoration: none;
     color: #999;
 }
 a:hover {
-    text-decoration: underline;
+    background-color: #ddd;
 }
 h1 {
     font-size: 3em;
