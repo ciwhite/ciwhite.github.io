@@ -77,12 +77,16 @@ footer {
     font-size: .8em;
 }
 
-footer ul.footer li a {
-    list-style-type: none;
-    display: inline-block;
-    text-align: center;
-    padding: 35px 50px;;
-    text-decoration: none  
+
+ul.footer {
+	text-align: center;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+ }
+
+ul.footer a {
+	display: inline-block;
+    padding: 14px 40px;
 }
 
 
