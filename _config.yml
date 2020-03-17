@@ -10,7 +10,10 @@ github_username: ciwhite
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
 collections:
-  projects:
-    outout: true
   notebooks:
     outout: true
+     permalink: /:collection/:name
+  projects:
+    outout: true
+     permalink: /:collection/:name
+  

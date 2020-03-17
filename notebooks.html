@@ -3,12 +3,12 @@ layout: default
 Title: R Notebooks
 ---
 
-<h1>Projects</h1>
+<h1>Notebooks</h1>
 
 <ul>
     {% for notebook in site.notebooks %}
       <li>
-        <h2><a href="{{ notebook.url }}">{{ notebook.name }}</a></h2>
+        <h2><a href="{{ notebook.url }}">{{ notebook.title }}</a></h2>
         <p>{{ notebook.content | markdownify }}</p>
       </li>
     {% endfor %}
