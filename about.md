@@ -1,6 +1,6 @@
 ---
 title: About
-layout: main
+layout: default
 ---
 
 A Phd Student at the Botany Department of Trinity College Dublin, supervised by [Professor Jane Stout](https://www.tcd.ie/Botany/people/stoutj/) and [Dr. Marcus Collier](https://www.tcd.ie/Botany/people/colliema/).
@@ -19,7 +19,7 @@ Side Projects
 * [Entogem](https://sysrev.com/u/371/p/16612)
 
 
-![alt text](profile.jpg)
+![alt text](/file/Dublin_area1.png)
 
 Interests
 
