@@ -20,7 +20,6 @@ Extra (xl) large devices (large desktops, 1200px and up)
 */
 
 body {
-    margin: 60px auto;
     width: 70%;
 }
 
@@ -90,7 +89,7 @@ ul.footer {
 
 ul.footer a {
 	display: inline-block;
-    padding: 14px 40px;
+    padding: 14px 20px;
 }
 
 
