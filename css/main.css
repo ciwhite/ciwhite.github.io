@@ -62,22 +62,23 @@ img {
 img {
     border: 0;
 }
+
 a {
     color: #428bca;
     text-decoration: none;
-  }
-  a:hover,
-  a:focus {
+}
+a:hover,a:focus {
     color: #2a6496;
     text-decoration: underline;
   }
+
 footer {
     border-top: 1px solid rgb(124, 213, 255);
     font-size: .8em;
 }
 
 footer ul.footer li a {
-    display: block;
+    display: inline-block;
     text-align: center;
     padding: 35px 50px;;
     text-decoration: none  
