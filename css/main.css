@@ -71,7 +71,7 @@ footer {
     font-size: .8em;
 }
 
-footer ul.footer a {
+footer ul.footer li a {
     display: block;
     text-align: center;
     padding: 35px 50px;;
