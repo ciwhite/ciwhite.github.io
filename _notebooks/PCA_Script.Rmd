@@ -1,0 +1,493 @@
+---
+title: "Principal Component Analysis in R"
+author: "Cian White"
+date: "03/03/20"
+output: html_notebook
+---
+***
+## Prinicpal Component Analysis
+
+I am setting up a notebook for how to run principal component analyses. PCA techniques are very useful for data exploration when the dataset is 'wide', there are a lot of columns for the amount of rows of datapoints. A PCA looks for correlations among the columns by searching for vectors (eigenvectors) that correlate stongly with the data in the columns (high eigenvalues). By searchinig for this eigenvectors with high eigenvalues we can hopefully reduce the dimensionality of the dataset.
+
+* Information Sources:
+
+  + Datacamp.com [Intro to PCA](https://www.datacamp.com/community/tutorials/pca-analysis-r)
+  + Stanford [Multivariate analysis in R](https://web.stanford.edu/class/bios221/labs/multivariate/lab_5_multivariate.html)
+  + Little book of R [Using R for Multivariate Analysis](https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/src/multivariateanalysis.html)
+  + Richard Lent [Tutorial on Multivariate Analysis](https://richardlent.github.io/post/multivariate-analysis-with-r/)
+  + Principal Component Methods in R: [Practical Guide](http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/)
+    + using the `factoextra package`
+    + see Shiny application [`Factoshiny`](https://www.r-bloggers.com/all-you-need-to-know-on-pca/) 
+
+PCA is a type of linear transformation on a given data set that has values for a certain number of variables (coordinates) for a certain amount of spaces. This linear transformation fits this dataset to a new coordinate system in such a way that the most significant variance is found on the first coordinate, and each subsequent coordinate is orthogonal to the last and has a lesser variance. In this way, you transform a set of x correlated variables over y samples to a set of p uncorrelated principal components over the same samples.
+
+Where many variables correlate with one another, they will all contribute strongly to the same principal component. Each principal component sums up a certain percentage of the total variation in the dataset. Where your initial variables are strongly correlated with one another, you will be able to approximate most of the complexity in your dataset with just a few principal components. As you add more principal components, you summarize more and more of the original dataset. Adding additional components makes your estimate of the total dataset more accurate, but also more unwieldy.
+
+Simply put, an eigenvector is a direction, such as "vertical" or "45 degrees", while an eigenvalue is a number telling you how much variance there is in the data in that direction. The eigenvector with the highest eigenvalue is, therefore, the first principal component.
+
+
+### Standardising Variables
+
+If you want to compare different variables that have different units, are very different variances, it is a good idea to first standardise the variables.
+
+Yet, whether you want to standardise or not depends on the question you are asking, see this [stack exchange discussion](https://stats.stackexchange.com/questions/53/pca-on-correlation-or-covariance)
+
+If variables are not standardised the first principal component will be dominated by variables which show the largest variance.
+
+* Why is the default to rescale the data?
+
+You tend to use the covariance matrix when the variable scales are similar and the correlation matrix when variables are on different scales.
+
+Using the correlation matrix is equivalent to standardizing each of the variables (to mean 0 and standard deviation 1)
+
+Recall the difference between correlation and covariance. In correlation you rescale by dividing by the norm of each dimension. This is more in line with what we're interested in. If one of our variable is measured in inches and then we decide to change that measurement to feet, the variance decreases by a factor of \(12^{-2}\). We don't want the result of our PCA to change based on the units a dimension is measured in. To avoid problems like this, we rescale our data so that each dimension has variance 1.
+
+Thus, it would be a better idea to first standardise the variables so that they all have variance 1 and mean 0, and to then carry out the principal component analysis on the standardised data. This would allow us to find the principal components that provide the best low-dimensional representation of the variation in the original data, without being overly biased by those variables that show the most variance in the original data.
+
+You can standardise variables in R using the `scale()` function.
+
+For example, to standardise the values of the 18 soil variables at each site, we type:
+`standardisedvalues <- as.data.frame(scale(T.18[1:18]))`
+
+Note that we use the `as.data.frame()` function to convert the output of `scale()` into a data frame, which is the same type of R variable that the `T.18` variable.
+
+We can check that each of the standardised variables stored in `standardisedvalues` has a mean of 0 and a standard deviation of 1 by typing:
+```{r}
+#sapply(standardisedvalues,mean)
+#       V2            V3            V4            V5            V6            V7
+#  -8.591766e-16 -6.776446e-17  8.045176e-16 -7.720494e-17 -4.073935e-17 -1.395560e-17
+#       V8            V9           V10           V11           V12           V13
+#  6.958263e-17 -1.042186e-16 -1.221369e-16  3.649376e-17  2.093741e-16  3.003459e-16
+#      V14
+#  -1.034429e-16
+#sapply(standardisedvalues,sd)
+#  V2  V3  V4  V5  V6  V7  V8  V9 V10 V11 V12 V13 V14
+#  1   1   1   1   1   1   1   1   1   1   1   1   1
+```
+We see that the means of the standardised variables are all very tiny numbers and so are essentially equal to 0, and the standard deviations of the standardised variables are all equal to 1.
+
+
+* Why is the default to center?
+
+Suppose that we did not center. We can relate PCA to directions with highest covariance. When we calculate sample covariance, we subtract the mean from each observation. If we skip this step (not centering), then the first axis of the PCA would always be pointing towards the center of mass.
+
+Some functions in R that calculate the PCA do not center by default. There might be a good reason to not center (e.g., you centered a large dataset already and you are only looking at a subsample), but in general, you should always center your data when doing a PCA.
+
+### Constructing a PCA 
+
+The `prcomp` package contains an arguement `scale` which scales the variables used in a PCA, so it is not necessary to manually scale as above.
+
+Loading data, selecting columns to include in PCA and running a scaled and centred PCA.
+```{r}
+
+Env_18 <- read.csv("Env_18.csv")
+
+colnames(Env_18)[1] <- "Param"
+
+for(i in 1:18){
+rownames(Env_18)[i] <- as.character(droplevels(Env_18$Param[i]))
+}
+
+Env_18 <- Env_18[,-1]
+
+
+#str(Env_18)
+
+
+Env.18.pca <- prcomp(Env_18, center = TRUE, scale. = TRUE)
+
+#summary(Env.18.pca)
+
+#str(Env.18.pca)
+
+#Transposing the data so we are looking at correlation between the soil characteristics themselves and not correleations among the sites.
+T.18 <- as.data.frame(t(Env_18))
+T.18.pca <- prcomp(T.18, center = TRUE, scale. = TRUE)
+#summary(T.18.pca)
+
+```
+
+
+* the centre, scaling, standard deviation of each principal component.
+```{r eval=FALSE}
+$center, $scale, $sdev
+```
+
+* The relationship (correlation or anticorrelation, etc) between the initial variables and the principal components 
+```{r eval=FALSE}
+$rotation
+```
+
+* The values of each sample in terms of the principal components 
+```{r eval=FALSE}
+$x
+```
+
+### Theory Behind PCA Results
+
+This code will calculate the PCA results for variables (i.e. columns): coordinates, cos2, and contributions
+
+* var.coord = loadings * the component standard deviations
+* var.cos2 = var.coord^2
+* var.contrib. The contribution of a variable to a given principal component is (in percentage) : (var.cos2 * 100) / (total cos2 of the component)
+
+```{r}
+#helper function
+
+var_coord_func <- function(loadings, comp.sdev){
+  loadings*comp.sdev
+}
+
+# Compute Coordinates
+
+loadings <- T.18.pca$rotation
+sdev <- T.18.pca$sdev
+var.coord <- t(apply(loadings, MARGIN = 1, var_coord_func, sdev)) 
+head(var.coord[, 1:4])
+
+#compute Cos2 (the variable components squared), or quality of representation on given dimension
+var.cos2 <- var.coord^2
+head(var.cos2[, 1:4])
+
+#Compute contributions
+comp.cos2 <- apply(var.cos2, MARGIN = 2, FUN = sum)
+contrib <- function(var.cos2, comp.cos2){var.cos2*100/comp.cos2}
+var.contrib <- t(apply(var.cos2, MARGIN = 1, contrib, comp.cos2))
+head(var.contrib[, 1:4])
+```
+
+This code will calculate PCA results for individuals (i.e. rows)
+
+* ind.coord = res.pca$x
+* Cos2 of individuals. Two steps:
+  + Calculate the square distance between each individual and the PCA center of gravity: d2 = [(var1_ind_i - mean_var1)/sd_var1]^2 + …+ [(var10_ind_i - mean_var10)/sd_var10]^2 + …+..
+  + Calculate the cos2 as ind.coord^2/d2
+* Contributions of individuals to the principal components: 100 * (1 / number_of_individuals)*(ind.coord^2 / comp_sdev^2). Note that the sum of all the contributions per column is 100
+```{r}
+# Coordinates of individuals
+#::::::::::::::::::::::::::::::::::
+ind.coord <- T.18.pca$x
+head(ind.coord[, 1:4])
+
+# Cos2 of individuals
+#:::::::::::::::::::::::::::::::::
+# 1. square of the distance between an individual and the
+# PCA center of gravity
+center <- T.18.pca$center
+scale<- T.18.pca$scale
+getdistance <- function(ind_row, center, scale){
+  return(sum(((ind_row-center)/scale)^2))
+  }
+d2 <- apply(T.18,1,getdistance, center, scale)
+# 2. Compute the cos2. The sum of each row is 1
+cos2 <- function(ind.coord, d2){return(ind.coord^2/d2)}
+ind.cos2 <- apply(ind.coord, 2, cos2, d2)
+head(ind.cos2[, 1:4])
+
+# Contributions of individuals
+#:::::::::::::::::::::::::::::::
+contrib <- function(ind.coord, comp.sdev, n.ind){
+  100*(1/n.ind)*ind.coord^2/comp.sdev^2
+}
+ind.contrib <- t(apply(ind.coord, 1, contrib, 
+                       T.18.pca$sdev, nrow(ind.coord)))
+head(ind.contrib[, 1:4])
+
+```
+
+### PCA Visualisation
+
+Now it's time to plot the PCA.
+
+we will first look at a package `ggbiplot`.
+
+You will make a biplot, which includes both the position of each sample in terms of PC1 and PC2 and also will show you how the initial variables map onto this. You will use the `ggbiplot` package, which offers a user-friendly and pretty function to plot biplots. A biplot is a type of plot that will allow you to visualize how the samples relate to one another in our PCA (which samples are similar and which are different) and will simultaneously reveal how each variable contributes to each principal component.
+
+
+```{r}
+library(devtools)
+#install_github("vqv/ggbiplot")
+
+library(ggbiplot)
+library(ggalt)
+library(ggforce)
+
+ggbiplot(Env.18.pca)
+ggbiplot(T.18.pca)
+
+#lets add in rownames so that we can see the identity of the points plotted.
+ggbiplot(Env.18.pca, labels=rownames(Env_18))
+ggbiplot(T.18.pca, labels=rownames(T.18))
+```
+
+Many other packages exist for plotting PCAs. Another suite of packages are the `facto` package family, which again works off the `ggplot` functionality
+
+```{r}
+library(factoextra)
+
+#scree plot
+fviz_eig(T.18.pca)
+
+#individuals (rows)
+fviz_pca_ind(T.18.pca,
+             col.ind = "cos2", # Color by the quality of representation
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+             )
+
+#variables (columns)
+fviz_pca_var(T.18.pca,
+             col.var = "contrib", # Color by contributions to the PC
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+             )
+
+#biplot
+fviz_pca_biplot(T.18.pca, repel = TRUE,
+                col.var = "#2E9FDF", # Variables color
+                col.ind = "#696969"  # Individuals color
+                )
+```
+
+```{r}
+library(Factoshiny)
+
+#result <- Factoshiny(T.18)
+
+```
+
+
+*Supplementary Variables*
+
+Qualitative / categorical variables
+
+Qualitative / categorical variables can be used to color individuals (rows) by groups. The grouping variable should be of same length as the number of active individuals
+
+```{r}
+
+```
+
+Code for extracting data from `Factoextra` package on PCA results
+```{r}
+library(factoextra)
+# Eigenvalues
+eig.val <- get_eigenvalue(T.18.pca)
+eig.val
+  
+# Results for Variables (i.e. columns)
+res.var <- get_pca_var(T.18.pca)
+#res.var$coord          # Coordinates
+#res.var$contrib        # Contributions to the PCs
+#res.var$cos2           # Quality of representation 
+# Results for individuals (i.e rows)
+res.ind <- get_pca_ind(T.18.pca)
+#res.ind$coord          # Coordinates
+#res.ind$contrib        # Contributions to the PCs
+#res.ind$cos2           # Quality of representation 
+```
+
+***
+### Deciding how many principal components to retain
+
+In order to decide how many principal components should be retained, it is common to summarise the results of a principal components analysis by making a scree plot, which we can do in R using the `screeplot()` function:
+
+```{r}
+T.18.pca <- prcomp(T.18, center = TRUE, scale. = TRUE)
+screeplot(T.18.pca, type="lines")
+```
+The most obvious change in slope in the scree plot occurs at component 4, which is the “elbow” of the scree plot. Therefore, it cound be argued based on the basis of the scree plot that the first three components should be retained.
+
+Another way of deciding how many components to retain is to use Kaiser’s criterion: that we should only retain principal components for which the variance is above 1 (when principal component analysis was applied to standardised data). We can check this by finding the variance of each of the principal components:
+
+```{r}
+(T.18.pca$sdev)^2
+```
+We see that the variance is above 1 for principal components 1, 2, 3 and 4 (which have variances 6.10, 3.95, 3.34, and 1.23 respectively). Therefore, using Kaiser’s criterion, we would retain the first four principal components.
+
+A third way to decide how many principal components to retain is to decide to keep the number of components required to explain at least some minimum amount of the total variance. For example, if it is important to explain at least 80% of the variance, we would retain the first four principal components, as we can see from the output of `summary(T.18.pca)` that the first four principal components explain 81.2% of the variance (while the first three components explain just 74.4%, so are not sufficient).
+
+```{r}
+summary(T.18.pca)
+```
+
+### Interpreting the Results
+
+Now, we can group our variables and see whether groups occupy a similar space in PCA space, indicating that they are correlated with each other. We do this using the groups argument in ggbiplot
+
+```{r}
+#creating groups, turning ellipses on
+T.18.pca <- prcomp(T.18, center = TRUE, scale. = TRUE)
+site.groups <- c(rep("a", 3), rep("b", 3),rep("c", 3),rep("d", 3),rep("e", 3),rep("f", 3))
+ggbiplot(T.18.pca, labels=rownames(T.18), groups = site.groups, ellipse = TRUE)
+
+#looking at the other PCA axes
+ggbiplot(T.18.pca, labels=rownames(T.18), groups = site.groups, ellipse = TRUE, choices = c(3,4))
+```
+
+illustrates that axis three is useful for pulling out groups, such as f, so should include the first three axes as they contain alot of variation.
+
+### Graphical parameters with ggbiplot
+
+Are also othe variables that can be used to alter the biplots.
+* Can add a circle to the centre of the dataset
+* Can scale the sampples (obs.scale) and the variables (var.scale)
+* Can remove the arrows altogether using var.axes
+
+```{r}
+T.18.pca <- prcomp(T.18, center = TRUE, scale. = TRUE)
+ggbiplot(T.18.pca, labels=rownames(T.18), groups = site.groups, ellipse = TRUE, circle = TRUE)
+
+ggbiplot(T.18.pca, labels=rownames(T.18), groups = site.groups, ellipse = TRUE, obs.scale = 1, var.scale = 1)
+
+ggbiplot(T.18.pca, labels=rownames(T.18), groups = site.groups, obs.scale = 1, var.scale = 1, var.axes=FALSE ) +
+  theme_bw() +
+  geom_mark_hull(concavity = 5, expand = 0, radius = 0, aes(fill=site.groups))
+
+```
+
+As ggbiplot is based on the ggplot function, you can use the same set of graphical parameters to alter the biplots as you would for any ggplot.
+
+* Specify colours to use for the groups with `scale_colour_manual()`
+* Add a title with `ggtitle()`
+* Specify the `minimal()` theme, or other themes
+* Move the legend with `theme()`
+
+
+***
+
+### Multivariate Packages
+
+So far I been using the base `stats` package for conducting PCA. But there are other packagaes out there that are design to facilitate a suite of multivariate analysis. `ade4` is such a package.
+
+Using the package `ade4` for multivariate analysis rather than base stats package. Combining with scree plots and comparing the `ade4` plotting functions to customised plotting using `ggplot` universe of packages
+
+
+```{r}
+library(ade4) # multivariate analysis
+T.18.pca <- dudi.pca(T.18, scannf = F, nf = 8)
+
+#The $co is the coordinates of variables in PCA space. Equivalent to loadings*sdev as calculated in theory section above for prcomp.
+#The $li correspond to the individual, or row, cooridinates 
+scatter(T.18.pca)
+```
+
+Setting up libraries, and basic plot themes
+```{r}
+library(grid) # has the viewport function, needed for insetting the scree plot
+library(ggpubr) #for making publication ready plots
+library(ggforce) #for some nice polygons geoms
+library(ggalt) #contains some extra geoms
+library(viridis) #some nice colour palettes
+library(hrbrthemes) #some nice themes for ggplot
+
+### set up a plot we'll use later
+ppp <- ggplot() +
+  coord_fixed() + 
+  labs(x= paste("PCA 1 " , "(", round((T.18.pca$eig[1] / sum(T.18.pca$eig))*100, 1), "% explained var" , ")", sep = ""),
+       y= paste("PCA 2 " , "(", round((T.18.pca$eig[2] / sum(T.18.pca$eig))*100, 1), "% explained var" , ")", sep = "")) +
+  
+  geom_hline(yintercept=0, col="darkgrey") + 
+  
+  geom_vline(xintercept=0, col="darkgrey") +
+  
+  guides(size=guide_legend(title="PCA 3 (18.6%)")) +
+  
+  geom_segment(data =T.18.pca$co,
+               x=0, y=0,
+               xend = 2.5*T.18.pca$co[,1], yend = 2.5*T.18.pca$co[,2],
+               arrow =  arrow(angle = 30,length = unit(0.25, "cm"),
+                              ends = "last", type = "open"),
+               alpha=0.4) +
+  scale_color_viridis(discrete=TRUE, guide=FALSE) +
+    theme_ipsum() 
+  
+# make the scree plot in a viewport
+myscree <- function(eigs, x=0.8, y=0.1, just=c("left","centre")){
+  vp <- viewport(x=x, y=y, width=0.2, height=0.2, just=just)
+  data <- as.data.frame(cbind(factor(1:length(eigs)), eigs))
+  sp <- ggplot() +
+    geom_col(aes(x=V1, y=eigs), data = data, position = "stack") +  
+    labs(x = NULL, y = NULL, title = "Scree Plot") +
+    theme(title = element_text(size = 6))
+  print(sp, vp=vp)
+}
+```
+
+
+Plotting using `geom_mark_ellipse()` function in the `ggforce` package
+```{r}
+#set grouping factor for colour, grouping by sites and adding to dataframe
+T.18.pca$li[,1+dim(T.18.pca$li)[2]]=site.groups
+
+#creating a named logical vector for what legends to display. Want the size legend but not sites.
+leg <- as.logical(c(1,0))
+names(leg) <- c("size", "col")
+
+ppp + 
+  geom_point(data=T.18.pca$li,
+             aes(x=Axis1,
+                 y=Axis2,
+                 size=Axis3,
+                 col=T.18.pca$li[,dim(T.18.pca$li)[2]]),
+             show.legend = leg) +
+  
+   scale_color_viridis(discrete=TRUE, guide=FALSE) +
+  
+  guides(size=guide_legend(title="PCA 3 (18.6%)")) +
+  
+  geom_text(data=T.18.pca$co,
+            aes(x=2.5*Comp1,
+                y=2.5*Comp2,
+                label=(colnames(T.18))),
+            size = 2, alpha=0.4) +
+  
+  geom_mark_ellipse(data =T.18.pca$li, aes(x=Axis1, y=Axis2,  
+                                           group=T.18.pca$li[,dim(T.18.pca$li)[2]],
+                                           fill=T.18.pca$li[,dim(T.18.pca$li)[2]]),
+                    alpha=0.4, expand=0) +
+  
+  scale_fill_viridis(discrete=TRUE, guide=FALSE) +
+  
+  guides(fill=guide_legend(title="Sites"))
+   
+myscree(T.18.pca$eig / sum(T.18.pca$eig))
+
+#can place labels whereever on the plot with this function, but it doesn't stay relative when size of plotting device changes
+#grid.text(label = "text", x=0.83, y=0.75, rot=270, gp=gpar(fontsize=8, col="black"))
+```   
+
+Plotting using `geom_encircle()` function in the `ggalt` package
+```{r}
+ppp + 
+  geom_point(data=T.18.pca$li,
+             aes(x=Axis1,
+                 y=Axis2,
+                 size=Axis3,
+                 col=T.18.pca$li[,dim(T.18.pca$li)[2]]),
+             show.legend = leg) +
+  
+  guides(size=guide_legend(title="PCA 3 (18.6%)")) +
+  
+  geom_text(data=T.18.pca$co,
+            aes(x=2.5*Comp1,
+                y=2.5*Comp2,
+                label=(colnames(T.18))),
+            size = 2, alpha=0.4) +
+  
+  geom_encircle(data =T.18.pca$li, aes(x=Axis1, y=Axis2,  
+                                           group=T.18.pca$li[,dim(T.18.pca$li)[2]],
+                                           fill=T.18.pca$li[,dim(T.18.pca$li)[2]]),
+                    alpha=0.4, expand=0) +
+  
+  scale_fill_viridis(discrete=TRUE, guide=FALSE) +
+  
+  guides(fill=guide_legend(title="Sites"))
+   
+myscree(T.18.pca$eig / sum(T.18.pca$eig))
+```
+
+### Predicting using PCA
+
+In this section, we’ll show how to predict the coordinates of supplementary individuals and variables using only the information provided by the previously performed PCA.
+
+see [here](http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/118-principal-component-analysis-in-r-prcomp-vs-princomp/)
