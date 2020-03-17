@@ -87,42 +87,39 @@ Extra (xl) large devices (large desktops, 1200px and up)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 body {
     margin: 60px auto;
     width: 60%;
-    font-size: 1em;
 }
-nav ul, footer ul {
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-    padding: 0px;
-    list-style: none;
-    font-weight: bold;
-}
-nav div ul li{
-    display: inline;
-    margin-right: 20px;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
-      }
+ul.topnav {
+    list-style-type: none;
+    margin: 10;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  ul.topnav li {float: left;}
+  
+  ul.topnav li a {
+    display: block;
+    color: rgb(124, 213, 255);
+    text-align: center;
+    padding: 14px 40px;
+    text-decoration: none;
+  }
+  
+  ul.topnav li a:hover:not(.active) {background-color: rgb(255, 205, 205);}
+  
+  ul.topnav li a.active {background-color: rgb(76, 168, 175);}
+  
+  ul.topnav li.right {float: right;}
+  
+  @media screen and (max-width: 600px) {
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+  }
 
-footer ul li {
-    display: inline;
-    margin-right: 20px;
-    }
 
 img.avatar {
    margin-bottom: 30px;
@@ -139,7 +136,7 @@ img {
 
 a {
     text-decoration: none;
-    color: #999;
+    color: rgb(0, 0, 0);
 }
 a:hover {
     background-color: #ddd;
@@ -149,12 +146,12 @@ h1 {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
 p {
-    font-size: 1.5em;
-    line-height: 1.4em;
+    font-size: ;
+    line-height: ;
     color: #333;
 }
 footer {
-    border-top: 1px solid #d5d5d5;
+    border-top: 1px solid rgb(124, 213, 255);
     font-size: .8em;
 }
 
