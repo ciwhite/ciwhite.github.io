@@ -46,7 +46,7 @@ figure {
   height: 100%;
 }
 #fixed {
-  background-image: "images/Dublin_area.png";
+  background-image: ;
   position: fixed;
   display: block;
   top: 0;
@@ -102,7 +102,7 @@ Extra (xl) large devices (large desktops, 1200px and up)
 
 body {
     margin: 60px auto;
-    width: 70%;
+    width: 60%;
     font-size: 1em;
 }
 nav ul, footer ul {
@@ -111,7 +111,7 @@ nav ul, footer ul {
     list-style: none;
     font-weight: bold;
 }
-nav ul li{
+nav div ul li{
     display: inline;
     margin-right: 20px;
     position: -webkit-sticky; /* Safari */

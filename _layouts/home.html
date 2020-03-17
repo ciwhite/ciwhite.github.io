@@ -11,42 +11,48 @@
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 			<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 			<link href="/css/main.css" rel="stylesheet">
-
 		</head>
+		<style>
+ul.topnav {
+  list-style-type: none;
+  margin: 10;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+  display: block;
+  color: rgb(124, 213, 255);
+  text-align: center;
+  padding: 14px 40px;
+  text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: rgb(76, 168, 175);}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px) {
+  ul.topnav li.right, 
+  ul.topnav li {float: none;}
+}
+		</style>
 		<body>
 
 <!-- Navigation -->
-<nav class="topnav">
-<div class="container-fluid">
-	<ul style="padding: 35px 50px;">
-		<a class="navbar-brand" href="/" title="Cian White">Home</a>	
-		<a href="/about" title="About">About</a>
-		<a href="/cv" title="CV">CV</a>
-		<a href="/blog" title="Blog">Blog</a>
-	</ul>
-	<!--Brand and toggle get grouped for better mobile display-->
-	<div class="navbar-header page-scroll">
-		<button class="navbar-toggler" type="button" data-toggle="collapse" 
-		data-target="#navbarResponsive">
-		<span class="sr-only">Toggle Navigation</span>
-		<span class="navbar-toggle-icon"></span>
-		<span class="navbar-toggle-icon"></span>
-		<span class="navbar-toggle-icon"></span>
-		</button>
-	<!--Collecting the nav links,forms and other content for toggling-->
-	<ul class="navbar-nav ml-auto">
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="nav navbar-nav navbar-right">
-		<li  class="nav-item active">
-			<a class="nav-link" href="/projects" title="Projects">Projects</a>
-		</li>
-		<li  class="nav-item active">
-			<a class="nav-link" href="/RNotebooks" title="RNotebooks">RNotebooks</a>
-		</li>
-	</ul>
-	</div>
-</div>
-</nav>
+<ul class="topnav">
+		<li><a class="active" href="/" title="Cian White">Home</a></li>
+		<li><a href="/about" title="About">About</a></li>
+		<li><a href="/cv" title="CV">CV</a></li>
+		<li><a href="/blog" title="Blog">Blog</a></li>
+		<li  class="right"><a href="/projects" title="Projects">Projects</a></li>
+		<li  class="right">	<a href="/RNotebooks" title="RNotebooks">RNotebooks</a></li>
+</ul>
 
 <!--- About Section -->
 
