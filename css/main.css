@@ -20,37 +20,35 @@ Extra (xl) large devices (large desktops, 1200px and up)
 */
 
 
-
-body {
-}
 ul.topnav {
     list-style-type: none;
     margin: 10;
     padding: 0;
     overflow: hidden;
     background-color: rgb(255, 255, 255);
-  }
+ }
   
-  ul.topnav li {float: left;}
+ul.topnav li {float: left;}
   
-  ul.topnav li a {
+ul.topnav li a {
     display: block;
     color: rgb(124, 213, 255);
     text-align: center;
     padding: 14px 40px;
     text-decoration: none;
-  }
+}
+
+ul.topnav li a:hover:not(.active) {background-color: rgb(255, 205, 205);}
   
-  ul.topnav li a:hover:not(.active) {background-color: rgb(255, 205, 205);}
+ul.topnav li a.active {background-color: rgb(76, 168, 175);}
   
-  ul.topnav li a.active {background-color: rgb(76, 168, 175);}
+ul.topnav li.right {float: right;}
   
-  ul.topnav li.right {float: right;}
-  
-  @media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
     ul.topnav li.right, 
     ul.topnav li {float: none;}
-  }
+}
+
 
 img.avatar {
    margin-bottom: 30px;
