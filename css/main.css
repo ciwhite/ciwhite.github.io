@@ -71,6 +71,14 @@ footer {
     font-size: .8em;
 }
 
+footer ul a {
+    display: block;
+    text-align: center;
+    padding: 14px 40px;
+    text-decoration: none  
+}
+
+
 ul.posts { 
     margin: 20px auto 40px; 
     font-size: 1.5em;
