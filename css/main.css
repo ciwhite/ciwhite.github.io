@@ -71,10 +71,10 @@ footer {
     font-size: .8em;
 }
 
-footer ul a {
+footer ul.footer a {
     display: block;
     text-align: center;
-    padding: 14px 40px;
+    padding: 35px 50px;;
     text-decoration: none  
 }
 

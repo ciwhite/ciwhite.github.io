@@ -19,7 +19,7 @@ Side Projects
 * [Entogem](https://sysrev.com/u/371/p/16612)
 
 
-![alt text](/files/Dublin_area1.png)
+![alt text](/images/Dublin_area1.png)
 
 Interests
 
