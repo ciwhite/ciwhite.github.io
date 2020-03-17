@@ -124,6 +124,19 @@ footer ul li {
     margin-right: 20px;
     }
 
+img.avatar {
+   margin-bottom: 30px;
+}
+.img-circle {
+    border-radius: 50%;
+}
+img {
+    vertical-align: middle;
+}
+img {
+    border: 0;
+}
+
 a {
     text-decoration: none;
     color: #999;
