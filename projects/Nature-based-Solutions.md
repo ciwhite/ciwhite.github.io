@@ -1,5 +1,7 @@
 ---
+layout: project
 Title: What is a Nature-based Solution
+date: 2020-03-13
 ---
 
 Nature-based Solutions is a concept and a buzzword that has been floating around the sustainable development world for a few years now.
