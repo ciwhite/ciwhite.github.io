@@ -78,6 +78,7 @@ footer {
 }
 
 footer ul.footer li a {
+    list-style-type: none;
     display: inline-block;
     text-align: center;
     padding: 35px 50px;;
