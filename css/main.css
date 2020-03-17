@@ -22,8 +22,6 @@ Extra (xl) large devices (large desktops, 1200px and up)
 
 
 body {
-    margin: ;
-    width:;
 }
 ul.topnav {
     list-style-type: none;
@@ -54,7 +52,6 @@ ul.topnav {
     ul.topnav li {float: none;}
   }
 
-
 img.avatar {
    margin-bottom: 30px;
 }
@@ -67,22 +64,9 @@ img {
 img {
     border: 0;
 }
-
 a {
     text-decoration: none;
     color: rgb(0, 0, 0);
-}
-a:hover {
-    background-color: #ddd;
-}
-h1 {
-    font-size: 3em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-}
-p {
-    font-size: ;
-    line-height: ;
-    color: #333;
 }
 footer {
     border-top: 1px solid rgb(124, 213, 255);
